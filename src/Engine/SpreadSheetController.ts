@@ -311,6 +311,7 @@ export class SpreadSheetController {
     if (!this._contributingUsers.has(user)) {
       return;
     }
+
     const userEditing = this._contributingUsers.get(user);
     if (!userEditing) {
       return;
@@ -318,6 +319,9 @@ export class SpreadSheetController {
     if (userEditing.cellLabel === '') {
       return;
     }
+    if (!userEditing!.isEditing) {
+      return;
+       }
 
     userEditing.formulaBuilder.setFormula([]);
     let cellBeingEdited = this._contributingUsers.get(user)?.cellLabel;

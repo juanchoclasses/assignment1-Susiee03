@@ -50,6 +50,12 @@ function SpreadSheet({ documentName }: SpreadSheetProps) {
     return () => clearInterval(interval);
   });
 
+  function handleBlur() {
+    if (!userName) {
+      alert('Please enter a username!');
+    }
+  }
+
 
   function getUserLogin() {
     return <div>
@@ -62,8 +68,15 @@ function SpreadSheet({ documentName }: SpreadSheetProps) {
           let userName = event.target.value;
           window.sessionStorage.setItem('userName', userName);
           // set the user name
-          setUserName(userName);
-          spreadSheetClient.userName = userName;
+          if (userName === undefined || userName === "") {
+
+            window.alert('Please enter a username!');
+            setUserName("Unknown");
+            spreadSheetClient.userName = "Unknown";
+          } else {
+            setUserName(userName);
+            spreadSheetClient.userName = userName;
+          }
         }} />
     </div>
 
