@@ -95,8 +95,7 @@ export class FormulaEvaluator {
         this._errorMessage = ErrorMessages.missingParentheses;
         return this._lastResult;
       }
-
-      //this._currentIndex++; 
+      this._currentIndex++;
       this._lastResult = result;
       return result;
     }

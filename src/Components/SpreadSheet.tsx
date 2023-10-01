@@ -50,12 +50,6 @@ function SpreadSheet({ documentName }: SpreadSheetProps) {
     return () => clearInterval(interval);
   });
 
-  function handleBlur() {
-    if (!userName) {
-      alert('Please enter a username!');
-    }
-  }
-
 
   function getUserLogin() {
     return <div>
@@ -68,15 +62,16 @@ function SpreadSheet({ documentName }: SpreadSheetProps) {
           let userName = event.target.value;
           window.sessionStorage.setItem('userName', userName);
           // set the user name
-          if (userName === undefined || userName === "") {
+          
+          // if (userName === undefined || userName === "") {
 
-            window.alert('Please enter a username!');
-            setUserName("Unknown");
-            spreadSheetClient.userName = "Unknown";
-          } else {
+          //   window.alert('Please enter a username!');
+          //   setUserName("Unknown");
+          //   spreadSheetClient.userName = "Unknown";
+          // } else {
             setUserName(userName);
             spreadSheetClient.userName = userName;
-          }
+          //}
         }} />
     </div>
 
@@ -95,7 +90,10 @@ function SpreadSheet({ documentName }: SpreadSheetProps) {
    * the other buttons do require asynchronous processing and so the function is marked async
    */
   async function onCommandButtonClick(text: string): Promise<void> {
-
+    if (userName === undefined ||userName === "") { 
+      window.alert('Please enter a username!');
+      return;
+    }
 
     switch (text) {
       case ButtonNames.edit_toggle:
@@ -130,6 +128,11 @@ function SpreadSheet({ documentName }: SpreadSheetProps) {
    * */
   function onButtonClick(event: React.MouseEvent<HTMLButtonElement>): void {
 
+    if (userName === undefined ||userName === "") { 
+      window.alert('Please enter a username!');
+      return;
+    }
+
     const text = event.currentTarget.textContent;
     let trueText = text ? text : "";
     spreadSheetClient.setEditStatus(true);
@@ -150,6 +153,10 @@ function SpreadSheet({ documentName }: SpreadSheetProps) {
    */
   function onCellClick(event: React.MouseEvent<HTMLButtonElement>): void {
 
+    if (userName === undefined ||userName === "") { 
+      window.alert('Please enter a username!');
+      return;
+    }
     const cellLabel = event.currentTarget.getAttribute("cell-label");
     // calculate the current row and column of the clicked on cell
 

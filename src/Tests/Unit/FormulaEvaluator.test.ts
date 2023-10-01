@@ -324,5 +324,29 @@ describe("FormulaEvaluator", () => {
       });
     });
 
+
+    describe("when the formula is 1 + 2 * (2 - 1 * 2) / 2 ", () => {
+      it("returns the number", () => {
+        const formula = ["1", "+", "2", "*", "(", "2", "-", "1", "*", "2", ")", "/", "2"];
+
+        recalc.evaluate(formula);
+        let result = recalc.result;
+        expect(result).toEqual(1);
+        
+      });
+    });
+
+
+    describe("when the formula is 8 * (3 + 2) - 9 ", () => {
+      it("returns the number", () => {
+        const formula = ["8", "*", "(", "3", "+", "2", ")", "-", "9"];
+
+        recalc.evaluate(formula);
+        let result = recalc.result;
+        expect(result).toEqual(31);
+        
+      });
+    });
+
   });
 });
