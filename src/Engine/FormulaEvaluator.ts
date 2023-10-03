@@ -159,18 +159,16 @@ export class FormulaEvaluator {
 
 
   evaluate(formula: FormulaType) {
-
-
     this._currentIndex = 0;
     this._errorMessage = "";
     this._currentFormula = [...formula];
     this._errorOccured = false;
 
-
-
     if (formula.length === 0) { 
+      this._errorOccured = true;
       this._errorMessage = ErrorMessages.emptyFormula;
       this._result = 0;
+      return;
     }
 
 
